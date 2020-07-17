@@ -48,8 +48,8 @@ echo "2) Verifying Script Version"
 echo "---------------------------"
 
 
-GITHUB_PATH="\""https://github.com/murata-wireless/meta-murata-wireless.git"\""
-META_MURATA_WIRELESS_GIT="https://github.com/murata-wireless/meta-murata-wireless.git"
+GITHUB_PATH="\""https://github.com/bchen-murata/meta-murata-wireless.git"\""
+META_MURATA_WIRELESS_GIT="https://github.com/bchen-murata/meta-murata-wireless.git"
 
 echo "Fetching latest script from Murata Github."
 echo "Cloning $GITHUB_PATH"
@@ -1543,8 +1543,9 @@ elif [ "$FMAC_VERSION" = $KONG_FMAC_INDEX ] ; then
         	echo    "------------------------------------------------------------------------------"
         	echo    "| Entry  |  Options                                                          |"
         	echo    "|--------|-------------------------------------------------------------------|"
-        	echo -e "|   1.   | 1.8V VIO signaling ${YLW}without${NC} UHS support ${YLW}(max SDIO clk = 50MHz)${NC}     |"
-        	echo -e "|   ${GRN}2.${NC}   | ${GRN}3.3V VIO signaling (No HW mods needed)${NC}                            |"
+          echo -e "|   1.   | 1.8V VIO signaling ${YLW}with${NC} UHS support                               |"
+        	echo -e "|   2.   | 1.8V VIO signaling ${YLW}without${NC} UHS support ${YLW}(max SDIO clk = 50MHz)${NC}     |"
+        	echo -e "|   ${GRN}3.${NC}   | ${GRN}3.3V VIO signaling (No HW mods needed)${NC}                            |"
         	echo    "------------------------------------------------------------------------------"
         	echo -e "| Note 1: Using ${YLW}V1/V2 Samtec${NC} Adapter ${YLW}HW mods reguired${NC} for ${YLW}1.8V${NC} VIO signaling |"
         	echo -e "| Note 2: Using ${GRN}uSd-M2${NC} Adapter ${GRN}disconnect J12${NC} for ${GRN}1.8V${NC} VIO signaling         |"
@@ -1558,14 +1559,21 @@ elif [ "$FMAC_VERSION" = $KONG_FMAC_INDEX ] ; then
         	echo -n "Select your entry: "
         		read VIO_SIGNALING_OPTION
         			case $VIO_SIGNALING_OPTION in
-        				1)
+                1)
+        				LINUX_SRC=linux-imx_4.14.98.bbappend.6UL_6ULL@1.8V_UHS
+        				LINUX_DEST=linux-imx_4.14.98.bbappend
+        				VIO_SIGNALING_STRING="1.8V VIO signaling ${YLW}with${NC} UHS support - ${YLW}HW mods needed${NC}"
+        				break
+        				;;
+
+        				2)
         				LINUX_SRC=linux-imx_4.14.98.bbappend.6UL_6ULL@1.8V_No_UHS
         				LINUX_DEST=linux-imx_4.14.98.bbappend
         				VIO_SIGNALING_STRING="1.8V VIO signaling ${YLW}without${NC} UHS support ${YLW}(max SDIO clk = 50MHz)${NC} - ${YLW}HW mods needed${NC}"
         				break
         				;;
 
-        				2)
+        				3)
         				LINUX_SRC=linux-imx_4.14.98.bbappend
         				LINUX_DEST=linux-imx_4.14.98.bbappend
         				VIO_SIGNALING_STRING="3.3V VIO signaling (No HW mods needed)"
@@ -3112,7 +3120,7 @@ IMAGE_NAME=core-image-base
 
 # change the defaults for DISTRO for rocko-mini
 #  ERROR - Only Wayland distros are supported for i.MX 8 or i.MX 8M
-if [ "$iMXYoctoRelease" = "$imxrockominiYocto" ] || [ "$iMXYoctoRelease" = "$imxsumoYocto" ]; then
+if [ "$iMXYoctoRelease" = "$imxrockominiYocto" ] || [ "$iMXYoctoRelease" = "$imxsumoYocto" ] || [ "$iMXYoctoRelease" = "$imxsumokongYocto" ]; then
 	DISTRO_NAME=fsl-imx-wayland
 elif [ "$iMXYoctoRelease" = "$imxzeusgameraYocto" ]; then
   DISTRO_NAME=fsl-imx-fb
@@ -3594,7 +3602,7 @@ if [ "$REPLY" = "y" ] || [ "$REPLY" = "Y" ] || [ "$REPLY" = "" ]; then
     fi
 
     #for sumo-kong
-	if [ "$FMAC_VERSION" = $KONG_FMAC_INDEX ] && [ "$iMXYoctoRelease" = "$imxsumoYocto" ]; then
+	if [ "$FMAC_VERSION" = $KONG_FMAC_INDEX ] && [ "$iMXYoctoRelease" = "$imxsumokongYocto" ]; then
 		mv $BSP_DIR/sources/meta-openembedded/meta-oe/recipes-connectivity/hostapd/hostapd_2.6.bb $BSP_DIR/sources/meta-openembedded/meta-oe/recipes-connectivity/hostapd/hostapd_2.6.bbx
   		mv $BSP_DIR/sources/meta-fsl-bsp-release/imx/meta-bsp/recipes-connectivity/hostapd/hostapd_%.bbappend $BSP_DIR/sources/meta-fsl-bsp-release/imx/meta-bsp/recipes-connectivity/hostapd/hostapd_%.bbappendx
       		mv $BSP_DIR/sources/poky/meta/recipes-connectivity/wpa-supplicant/wpa-supplicant_2.6.bb $BSP_DIR/sources/poky/meta/recipes-connectivity/wpa-supplicant/wpa-supplicant_2.6.bbx
