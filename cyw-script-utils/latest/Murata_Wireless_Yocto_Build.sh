@@ -2482,7 +2482,7 @@ elif [ "$FMAC_VERSION" = $MOTHRA_FMAC_INDEX ] || [ "$FMAC_VERSION" = $MANDA_FMAC
 	;;
 
 	9|10)
-	# For Branch/Tag : ---------------------imx-sumo-mothra / r_1.0 (developer | stable)-------------------------------
+	# For Branch/Tag : ---------------------imx-sumo-manda / r_1.0 (developer | stable)-------------------------------
 	echo -e "${GRN}Selected: $iMXYoctoRelease ${NC}"
 	echo $'\n'
 
@@ -2611,8 +2611,9 @@ echo $'\n'
 			echo    "------------------------------------------------------------------------------"
 			echo    "| Entry  |  Options                                                          |"
 			echo    "|--------|-------------------------------------------------------------------|"
-			echo -e "|   1.   | 1.8V VIO signaling ${YLW}without${NC} UHS support ${YLW}(max SDIO clk = 50MHz)${NC}     |"
-			echo -e "|   ${GRN}2.${NC}   | ${GRN}3.3V VIO signaling (No HW mods needed)${NC}                            |"
+      echo -e "|   1.   | 1.8V VIO signaling ${YLW}with${NC} UHS support                               |"
+			echo -e "|   2.   | 1.8V VIO signaling ${YLW}without${NC} UHS support ${YLW}(max SDIO clk = 50MHz)${NC}     |"
+			echo -e "|   ${GRN}3.${NC}   | ${GRN}3.3V VIO signaling (No HW mods needed)${NC}                            |"
 			echo    "------------------------------------------------------------------------------"
 			echo -e "| Note 1: Using ${YLW}V1/V2 Samtec${NC} Adapter ${YLW}HW mods reguired${NC} for ${YLW}1.8V${NC} VIO signaling |"
 			echo -e "| Note 2: Using ${GRN}uSd-M2${NC} Adapter ${GRN}disconnect J12${NC} for ${GRN}1.8V${NC} VIO signaling         |"
@@ -2626,14 +2627,21 @@ echo $'\n'
 			echo -n "Select your entry: "
 			read VIO_SIGNALING_OPTION
 			case $VIO_SIGNALING_OPTION in
-				1)
+        1)
+        LINUX_SRC=linux-imx_4.14.98.bbappend.6UL_6ULL@1.8V_UHS
+        LINUX_DEST=linux-imx_4.14.98.bbappend
+        VIO_SIGNALING_STRING="1.8V VIO signaling ${YLW}with${NC} UHS support - ${YLW}HW mods needed${NC}"
+        break
+        ;;
+
+				2)
 				LINUX_SRC=linux-imx_4.14.98.bbappend.6UL_6ULL@1.8V_No_UHS
 				LINUX_DEST=linux-imx_4.14.98.bbappend
 				VIO_SIGNALING_STRING="1.8V VIO signaling ${YLW}without${NC} UHS support ${YLW}(max SDIO clk = 50MHz)${NC} - ${YLW}HW mods needed${NC}"
 				break
 				;;
 
-				2)
+				3)
 				LINUX_SRC=linux-imx_4.14.98.bbappend
 				LINUX_DEST=linux-imx_4.14.98.bbappend
 				VIO_SIGNALING_STRING="3.3V VIO signaling (No HW mods needed)"
