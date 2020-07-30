@@ -2673,13 +2673,112 @@ echo $'\n'
 		fi
 
 		if [ "$TARGET_NAME" = "imx6sxsabresd" ]; then
-			LINUX_SRC=linux-imx_4.14.98.bbappend
-			LINUX_DEST=linux-imx_4.14.98.bbappend
-			#echo " "
-			echo -e "${YLW} If you are using uSD-M2 Adapter ${NC}"
-			echo -e "${YLW}  - Please plug the adapter in SD2 slot${NC}"
-			VIO_SIGNALING_STRING="3.3V VIO signaling"
+			while true; do
+
+			echo " "
+			echo "7.1) Select VIO Signaling"
+			echo "-------------------------"
+			echo " "
+			echo    "------------------------------------------------------------------------------"
+			echo    "| Entry  |  Options                                                          |"
+			echo    "|--------|-------------------------------------------------------------------|"
+			echo -e "|   1.   | 3.3V VIO signaling ${YLW}with Optimization flag for fmac enabled ${NC}       |"
+			echo -e "|   ${GRN}2.${NC}   | ${GRN}3.3V VIO signaling (No HW mods needed)${NC}                            |"
+			echo    "------------------------------------------------------------------------------"
+			echo -e "| Note 1: Using ${YLW}V1/V2 Samtec${NC} Adapter ${YLW}HW mods reguired${NC} for ${YLW}1.8V${NC} VIO signaling |"
+			echo -e "| Note 3: Using ${GRN}uSd-M2${NC} Adapter ${GRN}connect J12${NC} for ${GRN}3.3V${NC} VIO signaling            |"
+			echo    "------------------------------------------------------------------------------"
+			echo " "
+			echo " Refer to Murata Quickstart Guide for more details:"
+			echo " - Murata Wi-Fi BT Solution for i.MX Quick Start Guide (Linux) 5.x.pdf"
+			echo " "
+
+			echo -n "Select your entry: "
+			read VIO_SIGNALING_OPTION
+			case $VIO_SIGNALING_OPTION in
+				1)
+				LINUX_SRC=linux-imx_4.14.98.bbappend.OPT
+				LINUX_DEST=linux-imx_4.14.98.bbappend
+				VIO_SIGNALING_STRING="3.3V VIO signaling with Optimization flag enabled (No HW mods needed)"
+				break
+				;;
+
+				2)
+				LINUX_SRC=linux-imx_4.14.98.bbappend
+				LINUX_DEST=linux-imx_4.14.98.bbappend
+				VIO_SIGNALING_STRING="3.3V VIO signaling (No HW mods needed)"
+				break
+				;;
+
+				*)
+				echo -e "${RED}That is not a valid choice, try again.${NC}"
+						;;
+			esac
+			done
 			echo -e "${GRN}Selected $VIO_SIGNALING_STRING. ${NC}"
+
+			#LINUX_SRC=linux-imx_4.14.98.bbappend
+			#LINUX_DEST=linux-imx_4.14.98.bbappend
+			#echo " "
+			#echo -e "${YLW} If you are using uSD-M2 Adapter ${NC}"
+			#echo -e "${YLW}  - Please plug the adapter in SD2 slot${NC}"
+			#VIO_SIGNALING_STRING="3.3V VIO signaling"
+			#echo -e "${GRN}Selected $VIO_SIGNALING_STRING. ${NC}"
+			#echo " "
+		fi
+
+		if [ "$TARGET_NAME" = "imx6qsabresd" ]; then
+			while true; do
+
+			echo " "
+			echo "7.1) Select VIO Signaling"
+			echo "-------------------------"
+			echo " "
+			echo    "------------------------------------------------------------------------------"
+			echo    "| Entry  |  Options                                                          |"
+			echo    "|--------|-------------------------------------------------------------------|"
+			echo -e "|   1.   | 3.3V VIO signaling ${YLW}with Optimization flag for fmac enabled ${NC}       |"
+			echo -e "|   ${GRN}2.${NC}   | ${GRN}3.3V VIO signaling (No HW mods needed)${NC}                            |"
+			echo    "------------------------------------------------------------------------------"
+			echo -e "| Note 1: Using ${YLW}V1/V2 Samtec${NC} Adapter ${YLW}HW mods reguired${NC} for ${YLW}1.8V${NC} VIO signaling |"
+			echo -e "| Note 3: Using ${GRN}uSd-M2${NC} Adapter ${GRN}connect J12${NC} for ${GRN}3.3V${NC} VIO signaling            |"
+			echo    "------------------------------------------------------------------------------"
+			echo " "
+			echo " Refer to Murata Quickstart Guide for more details:"
+			echo " - Murata Wi-Fi BT Solution for i.MX Quick Start Guide (Linux) 5.x.pdf"
+			echo " "
+
+			echo -n "Select your entry: "
+			read VIO_SIGNALING_OPTION
+			case $VIO_SIGNALING_OPTION in
+				1)
+				LINUX_SRC=linux-imx_4.14.98.bbappend.OPT
+				LINUX_DEST=linux-imx_4.14.98.bbappend
+				VIO_SIGNALING_STRING="3.3V VIO signaling with Optimization flag enabled (No HW mods needed)"
+				break
+				;;
+
+				2)
+				LINUX_SRC=linux-imx_4.14.98.bbappend
+				LINUX_DEST=linux-imx_4.14.98.bbappend
+				VIO_SIGNALING_STRING="3.3V VIO signaling (No HW mods needed)"
+				break
+				;;
+
+				*)
+				echo -e "${RED}That is not a valid choice, try again.${NC}"
+						;;
+			esac
+			done
+			echo -e "${GRN}Selected $VIO_SIGNALING_STRING. ${NC}"
+
+			#LINUX_SRC=linux-imx_4.14.98.bbappend
+			#LINUX_DEST=linux-imx_4.14.98.bbappend
+			#echo " "
+			#echo -e "${YLW} If you are using uSD-M2 Adapter ${NC}"
+			#echo -e "${YLW}  - Please plug the adapter in SD2 slot${NC}"
+			#VIO_SIGNALING_STRING="3.3V VIO signaling"
+			#echo -e "${GRN}Selected $VIO_SIGNALING_STRING. ${NC}"
 			#echo " "
 		fi
 
