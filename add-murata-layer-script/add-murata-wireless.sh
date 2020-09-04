@@ -9,7 +9,7 @@ cp ./sources/meta-murata-wireless/freescale/imx6ull9x9evk.conf ./sources/meta-fs
 EULA=$EULA DISTRO=$DISTRO MACHINE=$MACHINE . ./sources/meta-fsl-bsp-release/imx/tools/fsl-setup-release.sh -b $@
 
 echo "INTERNAL_MIRROR = \"http://localhost\"" >> conf/local.conf
-echo "CORE_IMAGE_EXTRA_INSTALL += \" hostap-conf hostap-utils hostapd backporttool-linux murata-binaries iperf iperf3\"" >> conf/local.conf
+echo "CORE_IMAGE_EXTRA_INSTALL += \" hostap-conf hostap-utils hostapd backporttool-linux murata-binaries iperf iperf3  bluez5 bluez5-noinst-tools bluez5-obex openobex obexftp glibc-gconv-utf-16 glibc-utils\"" >> conf/local.conf
 
 echo "BBLAYERS += \" \${BSPDIR}/sources/meta-murata-wireless \"" >> conf/bblayers.conf
 
