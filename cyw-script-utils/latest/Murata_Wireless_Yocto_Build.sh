@@ -1,5 +1,5 @@
 ls#!/bin/bash
-VERSION=09042020
+VERSION=09052020
 
 # Use colors to highlight pass/fail conditions.
 RED='\033[1;31m' # Red font to flag errors
