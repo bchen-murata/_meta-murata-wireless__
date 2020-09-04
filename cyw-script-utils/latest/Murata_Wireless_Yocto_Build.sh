@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=09042020
+VERSION=09052020
 
 # Use colors to highlight pass/fail conditions.
 RED='\033[1;31m' # Red font to flag errors
@@ -48,8 +48,8 @@ echo "2) Verifying Script Version"
 echo "---------------------------"
 
 
-GITHUB_PATH="\""https://github.com/murata-wireless/meta-murata-wireless.git"\""
-META_MURATA_WIRELESS_GIT="https://github.com/murata-wireless/meta-murata-wireless.git"
+GITHUB_PATH="\""https://github.com/bill9412618/meta-murata-wireless.git"\""
+META_MURATA_WIRELESS_GIT="https://github.com/bill9412618/meta-murata-wireless.git"
 
 echo "Fetching latest script from Murata Github."
 echo "Cloning $GITHUB_PATH"
