@@ -1,4 +1,4 @@
-ls#!/bin/bash
+#!/bin/bash
 VERSION=09052020
 
 # Use colors to highlight pass/fail conditions.
@@ -123,12 +123,12 @@ LINUX_SRC=""
 LINUX_DEST=""
 VIO_SIGNALING_STRING=""
 CWD=""
-ORGA_FMAC_INDEX="1"
-BATTRA_FMAC_INDEX="2"
-MOTHRA_FMAC_INDEX="3"
-MANDA_FMAC_INDEX="4"
-KONG_FMAC_INDEX="5"
-GAMERA_FMAC_INDEX="6"
+ORGA_FMAC_INDEX="-1"
+BATTRA_FMAC_INDEX="-1"
+MOTHRA_FMAC_INDEX="-1"
+MANDA_FMAC_INDEX="1"
+KONG_FMAC_INDEX="2"
+GAMERA_FMAC_INDEX="3"
 
 
 
@@ -168,12 +168,11 @@ echo     "-----------------------"
 echo     "| Entry | Processor   |"
 echo     "|-------|-------------|"
 echo     "|  1.   | $iMX        |"
-echo -e  "|  2.   | $TiSitara   |"
 echo     "-----------------------"
 
 while true; do
 	read -p "Select which entry? " PROCESSOR_INFO
-	if [ "$PROCESSOR_INFO" = "1" ] || [ "$PROCESSOR_INFO" = "2" ]; then
+	if [ "$PROCESSOR_INFO" = "1" ] ; then
 		#echo "FMAC DEBUG:: $FMAC_VERSION"
 		break
 	else
@@ -568,20 +567,15 @@ echo     " "
 echo     "-------------------------------------------------------------"
 echo     "| Entry | "\""fmac"\"" version                                    |"
 echo     "|-------|---------------------------------------------------|"
-echo     "|  1.   | $ORGA_FMAC - Previous release               |"
-echo     "|  2.   | $BATTRA_FMAC - Previous release               |"
-echo     "|  3.   | $MOTHRA_FMAC - Previous release               |"
-echo     "|  4.   | $MANDA_FMAC - Previous release               |"
-echo     "|  5.   | $KONG_FMAC - Previous release               |"
-echo -e  "|  6.   | $GAMERA_FMAC - ${GRN}Latest and Highly recommended${NC}  |"
+echo     "|  1.   | $MANDA_FMAC - Previous release               |"
+echo     "|  2.   | $KONG_FMAC - Previous release               |"
+echo -e  "|  3.   | $GAMERA_FMAC - ${GRN}Latest and Highly recommended${NC}  |"
 echo     "-------------------------------------------------------------"
 
 while true; do
 	read -p "Select which entry? " FMAC_VERSION
 echo "FMAC DEBUG:: $FMAC_VERSION"
-	if [ "$FMAC_VERSION" = $ORGA_FMAC_INDEX ] || [ "$FMAC_VERSION" = $BATTRA_FMAC_INDEX ]  || \
-		[ "$FMAC_VERSION" = $MOTHRA_FMAC_INDEX ] || [ "$FMAC_VERSION" = $MANDA_FMAC_INDEX ]  || \
-		[ "$FMAC_VERSION" = $KONG_FMAC_INDEX ]  || [ "$FMAC_VERSION" = $GAMERA_FMAC_INDEX ]; then
+	if [ "$FMAC_VERSION" = $MANDA_FMAC_INDEX ]  || [ "$FMAC_VERSION" = $KONG_FMAC_INDEX ]  || [ "$FMAC_VERSION" = $GAMERA_FMAC_INDEX ]; then
 		#echo "DEBUG:: SELECTION OF FMAC :: $FMAC_VERSION"
 		break
 	else
@@ -1207,7 +1201,7 @@ if [ "$FMAC_VERSION" = $GAMERA_FMAC_INDEX ] ; then
           	echo "|  9     |  imx6ull9x9evk    | i.MX 6ULL EVK(9x9)    |"
           	echo "|  10    |  imx7ulpevk       | i.MX 7ULP EVK         |"
           	echo "|  11    |  imx8mqevk        | i.MX 8MQuad EVK       |"
-          	echo "|  12    |  imx8qmmek        | i.MX 8MQuad max  EVK  |"
+          	echo "|  12    |  imx8qmmek        | i.MX 8MQuad Max  EVK  |"
           	echo "|  13    |  imx8qxpmek       | i.MX 8MQuadXPlus EVK  |"
           	echo "|  14    |  imx8mmevk        | i.MX 8M Mini EVK      |"
           	echo "|  15    |  imx8mmddr4evk    | i.MX 8M Mini DDR4 EVK |"
@@ -1423,7 +1417,7 @@ elif [ "$FMAC_VERSION" = $KONG_FMAC_INDEX ] ; then
           	echo "|  9     |  imx6ull9x9evk    | i.MX 6ULL EVK(9x9)    |"
           	echo "|  10    |  imx7ulpevk       | i.MX 7ULP EVK         |"
           	echo "|  11    |  imx8mqevk        | i.MX 8MQuad EVK       |"
-          	echo "|  12    |  imx8qmmek        | i.MX 8MQuad max  EVK  |"
+          	echo "|  12    |  imx8qmmek        | i.MX 8MQuad Max  EVK  |"
           	echo "|  13    |  imx8qxpmek       | i.MX 8MQuadXPlus EVK  |"
           	echo "|  14    |  imx8mmevk        | i.MX 8M Mini EVK      |"
           	echo "|  15    |  imx8mmddr4evk    | i.MX 8M Mini DDR4 EVK |"
@@ -1630,7 +1624,7 @@ elif [ "$FMAC_VERSION" = $KONG_FMAC_INDEX ] ; then
   			echo "|  9     |  imx6ull9x9evk    | i.MX 6ULL EVK(9x9)    |"
   			echo "|  10    |  imx7ulpevk       | i.MX 7ULP EVK         |"
   			echo "|  11    |  imx8mqevk        | i.MX 8MQuad EVK       |"
-  			echo "|  12    |  imx8qmmek        | i.MX 8MQuad mini EVK  |"
+  			echo "|  12    |  imx8qmmek        | i.MX 8MQuad Max EVK   |"
   			echo "|  13    |  imx8qxpmek       | i.MX 8MQuadXPlus EVK  |"
   			echo "|  14    |  imx8mmevk        | i.MX 8M Mini EVK      |"
   			echo "------------------------------------------------------"
@@ -1844,7 +1838,7 @@ elif [ "$FMAC_VERSION" = $MOTHRA_FMAC_INDEX ] || [ "$FMAC_VERSION" = $MANDA_FMAC
 			echo "|  9     |  imx6ull9x9evk    | i.MX 6ULL EVK(9x9)    |"
 			echo "|  10    |  imx7ulpevk       | i.MX 7ULP EVK         |"
 			echo "|  11    |  imx8mqevk        | i.MX 8MQuad EVK       |"
-			echo "|  12    |  imx8qmmek        | i.MX 8MQuad mini EVK  |"
+			echo "|  12    |  imx8qmmek        | i.MX 8MQuad Max EVK   |"
 			echo "|  13    |  imx8qxpmek       | i.MX 8MQuadXPlus EVK  |"
 			echo "|  14    |  imx8mmevk        | i.MX 8M Mini EVK      |"
 			echo "------------------------------------------------------"
@@ -2548,7 +2542,7 @@ elif [ "$FMAC_VERSION" = $MOTHRA_FMAC_INDEX ] || [ "$FMAC_VERSION" = $MANDA_FMAC
 	echo "|  9     |  imx6ull9x9evk    | i.MX 6ULL EVK(9x9)    |"
 	echo "|  10    |  imx7ulpevk       | i.MX 7ULP EVK         |"
 	echo "|  11    |  imx8mqevk        | i.MX 8MQuad EVK       |"
-	echo "|  12    |  imx8qmmek        | i.MX 8MQuad mini EVK  |"
+	echo "|  12    |  imx8qmmek        | i.MX 8MQuad Max EVK   |"
 	echo "|  13    |  imx8qxpmek       | i.MX 8MQuadXPlus EVK  |"
 	echo "|  14    |  imx8mmevk        | i.MX 8M Mini EVK      |"
 	echo "------------------------------------------------------"
